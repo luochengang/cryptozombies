@@ -16,6 +16,6 @@ contract KittyInterface {
     uint256 generation,
     uint256 genes
   ) {
-      return (true, true, 1, 1, 1, 1, 1, 1, 1, genes);
+      return (true, true, 1, 1, 1, 1, 1, 1, 1, _id);
   }
 }

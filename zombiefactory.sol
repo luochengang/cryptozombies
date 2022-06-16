@@ -30,6 +30,7 @@ contract ZombieFactory is Ownable {
 
   function _createZombie(string memory _name, uint _dna) internal {
     zombies.push(Zombie(_name, _dna, 1, uint32(block.timestamp + cooldownTime), 0, 0));
+    // 以zombie在zombies数组里的下标来作为zombieId
     uint id = zombies.length - 1;
     zombieToOwner[id] = msg.sender;
     ownerZombieCount[msg.sender]++;
@@ -43,6 +44,7 @@ contract ZombieFactory is Ownable {
 
   function createRandomZombie(string memory _name) public {
     require(ownerZombieCount[msg.sender] == 0);
+    // 根据名字来生成dna
     uint randDna = _generateRandomDna(_name);
     randDna = randDna - randDna % 100;
     _createZombie(_name, randDna);
