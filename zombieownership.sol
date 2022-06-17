@@ -30,6 +30,7 @@ contract ZombieOwnership is ZombieAttack, ERC721 {
   }
 
   function transfer(address _to, uint256 _tokenId) public onlyOwnerOf(_tokenId) override {
+    require(_to != msg.sender, "ERC721: transfer to current owner");
     _transfer(msg.sender, _to, _tokenId);
   }
 

@@ -16,6 +16,8 @@ contract ZombieAttack is ZombieHelper {
   }
 
   function attack(uint _zombieId, uint _targetId) external onlyOwnerOf(_zombieId) {
+    require(_zombieId >= 0 && _zombieId < zombies.length, "_zombieId out of bound");
+    require(_targetId >= 0 && _targetId < zombies.length, "_targetId out of bound"); 
     Zombie storage myZombie = zombies[_zombieId];
     Zombie storage enemyZombie = zombies[_targetId];
     uint rand = randMod(100);
